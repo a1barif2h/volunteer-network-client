@@ -8,7 +8,7 @@ import Events from "../Events/Events";
 const Home = () => {
   const [volunteerEvents, setVolunteerEvents] = useState([]);
   useEffect(() => {
-    fetch("http://localhost:5000/volunteerTasks")
+    fetch("https://mysterious-caverns-84621.herokuapp.com/volunteerTasks")
       .then((res) => res.json())
       .then((data) => setVolunteerEvents(data));
   }, []);

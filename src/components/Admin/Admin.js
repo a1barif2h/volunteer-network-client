@@ -10,13 +10,13 @@ const Admin = () => {
   const [events, setEvents] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:5000/registered-events")
+    fetch("https://mysterious-caverns-84621.herokuapp.com/registered-events")
       .then((res) => res.json())
       .then((result) => setEvents(result));
   }, []);
 
   const deleteHandler = (id) => {
-    fetch("http://localhost:5000/cancel-event", {
+    fetch("https://mysterious-caverns-84621.herokuapp.com/cancel-event", {
       method: "DELETE",
       headers: {
         "Content-Type": "application/json",

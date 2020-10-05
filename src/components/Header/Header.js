@@ -1,12 +1,5 @@
 import React, { useContext } from "react";
-import {
-  Button,
-  Container,
-  Form,
-  FormControl,
-  Nav,
-  Navbar,
-} from "react-bootstrap";
+import { Button, Nav, Navbar } from "react-bootstrap";
 import { localContext } from "../../App";
 import logo from "../../images/logo.png";
 

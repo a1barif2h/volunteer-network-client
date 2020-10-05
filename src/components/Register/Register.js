@@ -17,7 +17,7 @@ const Register = () => {
   const handelSubmitRegister = (event) => {
     event.preventDefault();
 
-    fetch("http://localhost:5000/submit-register", {
+    fetch("https://mysterious-caverns-84621.herokuapp.com/submit-register", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",

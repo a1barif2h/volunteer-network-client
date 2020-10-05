@@ -10,7 +10,7 @@ const AddEvent = () => {
   const history = useHistory();
 
   const handelAddEvent = () => {
-    fetch("http://localhost:5000/add-event", {
+    fetch("https://mysterious-caverns-84621.herokuapp.com/add-event", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
