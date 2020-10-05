@@ -24,12 +24,9 @@ const Home = () => {
         <Header />
         <Search />
         <Row style={{ cursor: "pointer" }} className="mt-5">
-          {volunteerEvents.map((volunteerEvent) => (
-            <Col md={3}>
-              <Events
-                key={volunteerEvent._id}
-                volunteerEvent={volunteerEvent}
-              />
+          {volunteerEvents.map((event) => (
+            <Col key={event._id} md={3}>
+              <Events event={event} />
             </Col>
           ))}
         </Row>

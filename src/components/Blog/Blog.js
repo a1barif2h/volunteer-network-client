@@ -1,10 +1,15 @@
 import React from "react";
+import { Container } from "react-bootstrap";
+import Header from "../Header/Header";
 
 const Blog = () => {
   return (
-    <div>
-      <h1>Section under construction</h1>
-    </div>
+    <Container>
+      <Header />
+      <h1 className="pt-5" style={{ textAlign: "center" }}>
+        Section under construction
+      </h1>
+    </Container>
   );
 };
 

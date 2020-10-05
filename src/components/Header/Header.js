@@ -1,4 +1,4 @@
-import React from "react";
+import React, { useContext } from "react";
 import {
   Button,
   Container,
@@ -7,9 +7,11 @@ import {
   Nav,
   Navbar,
 } from "react-bootstrap";
+import { localContext } from "../../App";
 import logo from "../../images/logo.png";
 
 const Header = () => {
+  const [logedInUser, setLogedInUser] = useContext(localContext);
   const logoStyle = {
     height: "45px",
   };
@@ -24,14 +26,25 @@ const Header = () => {
           <Nav className="ml-auto font-weight-bold">
             <Nav.Link href="/home">Home</Nav.Link>
             <Nav.Link href="/donation">Donation</Nav.Link>
-            <Nav.Link href="/events">Events</Nav.Link>
+            <Nav.Link href="/user-events">Events</Nav.Link>
             <Nav.Link href="/blog">Blog</Nav.Link>
-            <Nav.Link href="/register">
-              <Button variant="primary">Register</Button>
-            </Nav.Link>
-            <Nav.Link href="/admin">
-              <Button variant="dark">Admin</Button>
-            </Nav.Link>
+            {logedInUser.email ? (
+              <>
+                <Nav.Link href="/">{logedInUser.name}</Nav.Link>
+                <Nav.Link href="/admin">
+                  <Button variant="dark">Admin</Button>
+                </Nav.Link>
+              </>
+            ) : (
+              <>
+                <Nav.Link href="/login">
+                  <Button variant="primary">Login</Button>
+                </Nav.Link>
+                <Nav.Link href="/admin">
+                  <Button variant="dark">Admin</Button>
+                </Nav.Link>
+              </>
+            )}
           </Nav>
         </Navbar.Collapse>
       </Navbar>

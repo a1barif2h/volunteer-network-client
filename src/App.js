@@ -1,29 +1,26 @@
-import React, { useEffect, useState } from "react";
+import React, { createContext, useEffect, useState } from "react";
 import { BrowserRouter as Router, Switch, Route, Link } from "react-router-dom";
 import "./App.css";
 import Admin from "./components/Admin/Admin";
 import Blog from "./components/Blog/Blog";
 import Donation from "./components/Donation/Donation";
-import Events from "./components/Events/Events";
 import Home from "./components/Home/Home";
 import Login from "./components/Login/Login";
+import NotFound from "./components/NotFound/NotFound";
+import PrivateRoute from "./components/PrivateRoute/PrivateRoute";
 import Register from "./components/Register/Register";
+import UserEvent from "./components/UserEvent/UserEvent";
+
+export const localContext = createContext();
 
 function App() {
-  // const addVolunteerTask = () => {
-  //   fetch("http://localhost:5000/addVolunteerTask", {
-  //     method: "POST",
-  //     headers: { "Content-type": "application/json" },
-  //     body: JSON.stringify(volunteerEvent),
-  //   })
-  //     .then((res) => res.json())
-  //     .then((data) => {
-  //       console.log(data);
-  //     });
-  // };
+  const [logedInUser, setLogedInUser] = useState({});
 
   return (
-    <div className="App">
+    <localContext.Provider
+      value={[logedInUser, setLogedInUser]}
+      className="App"
+    >
       <Router>
         <Switch>
           <Route exact path="/">
@@ -35,14 +32,14 @@ function App() {
           <Route path="/donation">
             <Donation />
           </Route>
-          <Route path="/events">
-            <Events />
-          </Route>
           <Route path="/blog">
             <Blog />
           </Route>
-          <Route path="/register">
+          <PrivateRoute path="/register/:title">
             <Register />
+          </PrivateRoute>
+          <Route path="/user-events">
+            <UserEvent />
           </Route>
           <Route path="/admin">
             <Admin />
@@ -50,9 +47,12 @@ function App() {
           <Route path="/login">
             <Login />
           </Route>
+          <Route exact path="*">
+            <NotFound />
+          </Route>
         </Switch>
       </Router>
-    </div>
+    </localContext.Provider>
   );
 }
 
